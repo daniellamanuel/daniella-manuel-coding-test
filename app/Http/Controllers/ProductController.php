@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
         $products = Product::paginate(10);
         return new ProductResource($products);
@@ -27,13 +27,13 @@ class ProductController extends Controller
         if ($validate->fails()) {
             return response()->json(['error' => $validate->errors()], 400);
         } else {
-            $data = $request->all();               
-            $product = new Product($data);
-            $product->save();
+            $product_data = $request->all();               
+            $add_product = new Product($product_data);
+            $add_product->save();
 
             return [
                 'message' => 'Product added successfully.',
-                'product' => $product,
+                'product' => $add_product,
             ];
         }
     }
@@ -54,10 +54,10 @@ class ProductController extends Controller
         if ($validate->fails()) {
             return response()->json(['error' => $validate->errors()], 400);
         } else {
-            $data = $request->all();               
-            $product = Product::where('id', $product->id)->firstOrFail();
-            $product->fill($data);
-            $product->save();
+            $product_data = $request->all();               
+            $update_product = Product::where('id', $product->id)->firstOrFail();
+            $update_product->fill($product_data);
+            $update_product->save();
 
             return [
                 'message' => 'Product updated successfully.',
