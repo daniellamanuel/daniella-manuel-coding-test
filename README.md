@@ -117,4 +117,4 @@ If automatically generating a new repository does not work, follow these steps i
 Q: The management requested a new feature where in the fictional e-commerce app must have a "featured products" section.
 How would you go about implementing this feature in the backend?
 
-A: _Put your answer here_
+A: I would first update the products table I created by adding a new column named "is_featured" using the boolean data type. The next file I would edit would be the ProductFactory, where I would add the "is_featured" column so that a random boolean value would be added once the user runs the seeder. I would then edit the ProductController by adding a new function called "featuredProduct". This is where I'll fetch the data from the database and return all the data that has a "true" value in the "is_featured" column. Lastly, I will update the api.php file by adding a new route that is specifically used to get the featured products.
