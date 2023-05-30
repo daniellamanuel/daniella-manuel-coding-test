@@ -4,12 +4,9 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\Product;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ProductTest extends TestCase
 {
-    use RefreshDatabase;
-
     public function testFactoryProduct()
     {
         $product = Product::factory()->create();
