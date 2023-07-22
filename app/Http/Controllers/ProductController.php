@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Validator;
 class ProductController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(10);
-        return new ProductResource($products);
+        $products = Product::paginate($request->input('perPage'));
+        return response()->json(['products' => $products]);
     }
 
     public function store(Request $request)
